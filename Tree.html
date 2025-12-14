@@ -275,11 +275,13 @@
     <canvas id="webcam-preview"></canvas>
   </div>
 
-  <audio
-    id="bgm"
-    loop
-    src="https://cdn.pixabay.com/download/audio/2021/12/20/audio_67ba4c7b63.mp3?filename=christmas-background-126735.mp3"
-  ></audio>
+<audio
+  id="bgm"
+  loop
+  controls
+  style="position: fixed; bottom: 10px; right: 10px; z-index: 9999;"
+  src="https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3"
+></audio>
 
   <script type="module">
     import * as THREE from 'three';
