@@ -32,7 +32,7 @@
       z-index: 1;
     }
 
-    /* UI Layer：现在不再盖一层雾，只承载文字和按钮 */
+    /* UI Layer：不再盖一层雾，只承载文字和按钮 */
     #ui-layer {
       position: absolute;
       top: 0;
@@ -234,7 +234,7 @@
       background-image: linear-gradient(135deg, #e5d3ff, #b27bf0, #f8f1ff);
     }
     .theme-emerald {
-      background-image: linear-gradient(135deg, #c8f3d4, #4fa977, #f2fff8);
+      background-image: linear-gradient(135deg, #c8f3de, #4fa977, #f2fff8);
     }
     .theme-rose {
       background-image: linear-gradient(135deg, #ffd8e3, #f193b9, #fff1f6);
@@ -364,7 +364,7 @@
       DrawingUtils
     } from '@mediapipe/tasks-vision';
 
-    /* ========= 主题配色：整棵树 + 顶部雪花颜色 ========== */
+    /* ========= 主题配色 ========= */
     const THEMES = [
       // 1. 金色 · 经典暖金
       {
@@ -389,96 +389,104 @@
         haloA: 0xffe5b0,
         bgStarA: 0xc0c7df
       },
-      // 2. 冰蓝 · 冷白+浅蓝
+      // 2. 冰蓝白 —— 恢复上一版
       {
         label: 'ICE',
         bg: 0x050914,
-        overlay: ['rgba(0,0,0,0)', 'rgba(0,0,0,0)', 'rgba(0,0,0,0)'],
-        bulbA: 0xdbe8ff,
-        bulbB: 0xf8fbff,
-        bulbEmissive: 0x3a4f80,
-        accentA: 0xf3f6ff,
-        accentB: 0xcfdcff,
-        accentEmissive: 0x263457,
-        green: 0x182940,
-        red: 0x6b9bff,
-        dust: 0xf5f9ff,
-        garlandA: 0xd8e6ff,
-        garlandB: 0xafc6f8,
-        garlandEmissive: 0x3b5792,
-        starA: 0xf7fbff,
-        starB: 0xddeaff,
-        starEmissive: 0xbfd5ff,
-        haloA: 0xbfd8ff,
+        overlay: [
+          'rgba(46,86,140,0.45)',
+          'rgba(7,13,28,0.65)',
+          'rgba(18,56,120,0.55)'
+        ],
+        bulbA: 0xd7e5ff,
+        bulbB: 0xf7fbff,
+        bulbEmissive: 0x304a7a,
+        accentA: 0xf1f5ff,
+        accentB: 0xd0ddff,
+        accentEmissive: 0x23365a,
+        green: 0x142438,
+        red: 0x5c91ff,
+        dust: 0xf5f8ff,
+        garlandA: 0xd6e6ff,
+        garlandB: 0xadc5f5,
+        garlandEmissive: 0x3b5993,
+        starA: 0xf1f7ff,
+        starB: 0xc7ddff,
+        starEmissive: 0xa3c9ff,
+        haloA: 0xb9d5ff,
         bgStarA: 0xa7baf5
       },
-      // 3. 深紫 · 你说好看的那种感觉上再调高一点层次
+      // 3. 深紫 —— 恢复上一版
       {
         label: 'PURPLE',
-        bg: 0x090314,
-        overlay: ['rgba(0,0,0,0)', 'rgba(0,0,0,0)', 'rgba(0,0,0,0)'],
-        bulbA: 0xe4d2ff,
-        bulbB: 0xf9f3ff,
-        bulbEmissive: 0x53337f,
-        accentA: 0xf3e5ff,
-        accentB: 0xd7c0ff,
-        accentEmissive: 0x3b245f,
-        green: 0x261638,
-        red: 0xc58cd8,
-        dust: 0xfdf5ff,
-        garlandA: 0xe8d5ff,
-        garlandB: 0xc8a4f2,
-        garlandEmissive: 0x5d3891,
-        starA: 0xf9f2ff,
-        starB: 0xe1c7ff,
-        starEmissive: 0xcf9ff7,
-        haloA: 0xe2c3ff,
+        bg: 0x090313,
+        overlay: [
+          'rgba(88,54,140,0.45)',
+          'rgba(20,10,40,0.65)',
+          'rgba(132,68,170,0.55)'
+        ],
+        bulbA: 0xdac4ff,
+        bulbB: 0xf5efff,
+        bulbEmissive: 0x4b377f,
+        accentA: 0xf0e0ff,
+        accentB: 0xd8c1ff,
+        accentEmissive: 0x3a275f,
+        green: 0x241634,
+        red: 0xc18fd9,
+        dust: 0xfaf3ff,
+        garlandA: 0xe4cffc,
+        garlandB: 0xcaadef,
+        garlandEmissive: 0x5b3b8d,
+        starA: 0xf8efff,
+        starB: 0xe0c5ff,
+        starEmissive: 0xcc9df7,
+        haloA: 0xe5c7ff,
         bgStarA: 0xd0b9ff
       },
-      // 4. 祖母绿 · 冷绿 + 一点金
+      // 4. 祖母绿 · 加一点金色层次
       {
         label: 'EMERALD',
         bg: 0x040a08,
         overlay: ['rgba(0,0,0,0)', 'rgba(0,0,0,0)', 'rgba(0,0,0,0)'],
-        bulbA: 0xc8f1d4,
-        bulbB: 0xf3fff8,
+        bulbA: 0xc6f3de,
+        bulbB: 0xfdf7e2,
         bulbEmissive: 0x29573f,
-        accentA: 0xe8ffe9,
-        accentB: 0xbef0cc,
-        accentEmissive: 0x214432,
+        accentA: 0xf4ffe9,
+        accentB: 0xe4cf9a,
+        accentEmissive: 0x3a2f23,
         green: 0x174331,
-        red: 0xc3a476,
-        dust: 0xf4fff9,
-        garlandA: 0xd6ffd9,
-        garlandB: 0xa7f1c3,
-        garlandEmissive: 0x3a7952,
-        starA: 0xf6ffe9,
-        starB: 0xd1f5b8,
-        starEmissive: 0xb5f39a,
-        haloA: 0xcafeb1,
+        red: 0xd0a874,
+        dust: 0xf7fff9,
+        garlandA: 0xdaf7d9,
+        garlandB: 0xf1e0b5,
+        garlandEmissive: 0x6a8f4b,
+        starA: 0xfaf6e3,
+        starB: 0xd8f3b8,
+        starEmissive: 0xb9f39a,
+        haloA: 0xd9ffbf,
         bgStarA: 0xa2f3cf
       },
-      // 5. 玫瑰粉 · 柔和粉+一点酒红
+      // 5. 玫瑰粉 · 加一点香槟金
       {
         label: 'ROSE',
         bg: 0x12030a,
         overlay: ['rgba(0,0,0,0)', 'rgba(0,0,0,0)', 'rgba(0,0,0,0)'],
-        bulbA: 0xf8c6d4,
-        bulbB: 0xfff2f6,
-        bulbEmissive: 0x7d4252,
-        accentA: 0xffe3eb,
-        accentB: 0xf4c3d1,
-        accentEmissive: 0x5b2837,
+        bulbA: 0xf9cedc,
+        bulbB: 0xfff4f8,
+        bulbEmissive: 0x7f4354,
+        accentA: 0xffe7ef,
+        accentB: 0xf5d8be,
+        accentEmissive: 0x5c3340,
         green: 0x3b1a25,
-        red: 0xe98ba6,
+        red: 0xe8849f,
         dust: 0xfff6f8,
-        garlandA: 0xffd2df,
-        garlandB: 0xf3a8c2,
-        garlandEmissive: 0x8e465b,
-        starA: 0xffeef3,
-        starB: 0xf5cddf,
-        starEmissive: 0xf1a4be,
-        haloA: 0xf5cede,
+        garlandA: 0xffd5e2,
+        garlandB: 0xf5bfcc,
+        garlandEmissive: 0x8f4b5c,
+        starA: 0xffeff4,
+        starB: 0xf3cfe1,
+        starEmissive: 0xf2a6be,
+        haloA: 0xf7d3e3,
         bgStarA: 0xf2b4cf
       }
     ];
@@ -632,7 +640,8 @@
       const container = document.getElementById('canvas-container');
       scene = new THREE.Scene();
       scene.background = new THREE.Color(CONFIG.colors.bg);
-      scene.fog = new THREE.FogExp2(CONFIG.colors.bg, 0.003);
+      // 雾感整体再弱一点
+      scene.fog = new THREE.FogExp2(CONFIG.colors.bg, 0.0018);
 
       camera = new THREE.PerspectiveCamera(
         45,
@@ -651,7 +660,7 @@
       renderer.setSize(window.innerWidth, window.innerHeight);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      renderer.toneMappingExposure = 0.45; // 再降一点曝光
+      renderer.toneMappingExposure = 0.45; // 曝光较前一版更低一点
       container.appendChild(renderer.domElement);
 
       bgGroup = new THREE.Group();
@@ -694,14 +703,15 @@
         });
       }
 
-      const bokehCount = 6;
+      // 散景数量和亮度都再弱一些
+      const bokehCount = 4;
       bokehLights = [];
       for (let i = 0; i < bokehCount; i++) {
         bokehLights.push({
           x: Math.random() * overlayW,
           y: Math.random() * overlayH,
-          r: 120 + Math.random() * 120,
-          baseAlpha: 0.02 + Math.random() * 0.03,
+          r: 110 + Math.random() * 120,
+          baseAlpha: 0.01 + Math.random() * 0.02,
           phase: Math.random() * Math.PI * 2,
           driftX: -4 + Math.random() * 8,
           driftY: -3 + Math.random() * 6
@@ -716,7 +726,7 @@
       const w = overlayW, h = overlayH;
       overlayCtx.clearRect(0, 0, w, h);
 
-      // 不再铺一层大雾，只保留少量散景点光
+      // 保留很轻的点状散景，不铺大面积雾
       overlayCtx.save();
       overlayCtx.globalCompositeOperation = 'lighter';
       bokehLights.forEach(b => {
@@ -727,7 +737,7 @@
         if (b.y < -b.r) b.y = h + b.r;
         if (b.y > h + b.r) b.y = -b.r;
 
-        const alpha = b.baseAlpha + Math.sin(STATE.time * 0.4 + b.phase) * 0.015;
+        const alpha = b.baseAlpha + Math.sin(STATE.time * 0.4 + b.phase) * 0.01;
         const radial = overlayCtx.createRadialGradient(
           b.x, b.y, 0, b.x, b.y, b.r
         );
@@ -760,7 +770,7 @@
           const scale = s.size / img.width;
           overlayCtx.scale(scale, scale);
           overlayCtx.globalAlpha =
-            0.65 + 0.35 * Math.sin(STATE.time * 1.5 + s.phase);
+            0.5 + 0.25 * Math.sin(STATE.time * 1.5 + s.phase);
           overlayCtx.drawImage(img, -img.width / 2, -img.height / 2);
           overlayCtx.restore();
         } else {
@@ -857,7 +867,7 @@
       const renderScene = new RenderPass(scene, camera);
       const bloomPass = new UnrealBloomPass(
         new THREE.Vector2(window.innerWidth, window.innerHeight),
-        0.6,   // bloom 强度再轻一点
+        0.6,
         0.35,
         1.0
       );
@@ -1196,7 +1206,7 @@
       });
     }
 
-    // 顶部雪花造型（六角雪花），颜色跟主题同步
+    // 顶部雪花（六角造型），颜色跟主题同步
     function createStarTopper() {
       const shape = new THREE.Shape();
       const arms = 6;
@@ -1252,7 +1262,7 @@
         blending: THREE.AdditiveBlending,
         depthWrite: false,
         transparent: true,
-        opacity: 0.32
+        opacity: 0.26   // 光晕也稍微弱一点
       });
       MATERIALS.starHaloMat = haloMat;
       const halo = new THREE.Sprite(haloMat);
@@ -1306,7 +1316,7 @@
       const canvasElement = document.getElementById('webcam-preview');
       if (video.videoWidth && canvasElement.width !== video.videoWidth) {
         canvasElement.width = video.videoWidth;
-        canvasElement.height = video.videoHeight;
+        canvasElement.height = videoHeight;
       }
 
       if (lastVideoTime !== video.currentTime) {
